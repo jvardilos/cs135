@@ -16,15 +16,18 @@ int main()
     std::vector<Room> map = generateMap();
     Player p = initPlayer(map);
 
-    turn(map);
+    std::string input;
 
-    // do
-    // {
-    //     if (fin)
-    //     {
-    //         turn(map);
-    //     }
-    // } while (true);
+    do
+    {
+        turn(map);
+        std::cin >> input;
+
+        if (input == "q")
+        {
+            break;
+        }
+    } while (true);
 
     return 0;
 }
@@ -53,7 +56,7 @@ std::vector<Room> generateMap()
 {
     std::vector<Room> map;
 
-    Room r(24);
+    Room r(25);
 
     map.push_back(r);
 
@@ -64,11 +67,11 @@ Player initPlayer(std::vector<Room> &map)
 {
     Player p;
 
-    int half = map[0].getDimensions() / 2;
+    int dimension = map[0].getDimensions();
 
-    map[0].updatePlayer(p);
+    map[0].updatePlayer(&p);
 
-    p.updateCoords(half, half);
+    p.updateCoords(dimension / 2, dimension / 4);
 
     return p;
 }

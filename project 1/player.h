@@ -8,7 +8,6 @@ class Player
 private:
     std::vector<Item> inventory;
     std::vector<int> coords = {0, 0};
-    void useTorch(Torch);
 
 public:
     void takeItem(Item);

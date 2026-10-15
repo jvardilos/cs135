@@ -12,7 +12,7 @@ private:
 
 public:
     Room(int d);
-    void updatePlayer(Player);
+    void updatePlayer(Player *);
     int getDimensions();
     bool containsPlayer();
     void printRoom();

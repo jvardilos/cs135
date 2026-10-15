@@ -17,38 +17,34 @@ bool Room::containsPlayer()
     return currentPlayer;
 }
 
-void Room::updatePlayer(Player p)
+void Room::updatePlayer(Player *p)
 {
-    currentPlayer = &p;
+    currentPlayer = p;
 }
 
 void Room::printRoom()
 {
-    for (int i = 1; i <= dimensions; i++)
+    std::vector<int> coords = currentPlayer->getCoords();
+    for (int x = 1; x <= dimensions; x++)
     {
         std::cout << "=";
     }
 
     std::cout << std::endl;
 
-    for (int i = 2; i <= (dimensions / 2); i++)
+    for (int y = 2; y <= (dimensions / 2); y++)
     {
         std::cout << "|";
 
-        for (int i = 2; i < dimensions; i++)
+        for (int x = 2; x < dimensions; x++)
         {
-            if (currentPlayer)
+            if (coords[0] == x && coords[1] == y)
             {
-                // unpack coords
-                std::vector<int> coords = currentPlayer->getCoords();
-                if (coords[0] == i)
-                {
-                    std::cout << "*";
-                }
-                else
-                {
-                    std::cout << " ";
-                }
+                std::cout << "*";
+            }
+            else
+            {
+                std::cout << " ";
             }
         }
 
@@ -67,7 +63,7 @@ void Room::printRoom()
     //     std::cout << "|" << std::endl;
     // }
 
-    for (int i = 1; i <= dimensions; i++)
+    for (int x = 1; x <= dimensions; x++)
     {
         std::cout << "=";
     }
